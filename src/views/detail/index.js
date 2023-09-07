@@ -18,28 +18,28 @@ export default function Detail() {
     const location = useLocation();
     const path = location.pathname;
     useEffect(() => {
-        // 解析路径信息
+
         const pathParts = path.split('/');
-        // 获取需要的部分
+
         const detailId = pathParts[pathParts.length - 1];
-      
+
         setFilter((prevFilter) => ({ ...prevFilter, id: detailId * 1 }));
-      
+
         setIsInitialMount(false);
-      }, [path]);
-      
-      useEffect(() => {
+    }, [path]);
+
+    useEffect(() => {
         if (!isInitialMount) {
-          api.getBooking_hotelDetail(filter).then((res) => {
-            console.log(res)
-            if (res.code === 200) {
-              setData(res.list);
-              setVisibility(true);
-            }
-          });
+            api.getBooking_hotelDetail(filter).then((res) => {
+                console.log(res)
+                if (res.code === 200) {
+                    setData(res.list);
+                    setVisibility(true);
+                }
+            });
         }
-      }, [filter, api, isInitialMount]);
-      
+    }, [filter, api, isInitialMount]);
+
     const handleFilterChange = (data) => {
         setFilter({
             ...filter,
@@ -63,7 +63,7 @@ export default function Detail() {
                                 title: <a href="">Home</a>,
                             },
                             {
-                                title: '详情',
+                                title: 'detail',
                             },
                         ]}
                     />
@@ -76,7 +76,7 @@ export default function Detail() {
                         <span className='start'>{'★'.repeat(4)}</span>
                     </div>
                     <p className="address">
-                        地址:{data.address}
+                        Address:{data.address}
                     </p>
                 </div>
                 <div className="hotel_detail_pic">
@@ -87,7 +87,7 @@ export default function Detail() {
                                 visibility ?
                                     <img src={data.images[0]} />
                                     :
-                                    '暂无图片'
+                                    'No photos available now'
                             }
                         </div>
                     </div>
@@ -97,7 +97,7 @@ export default function Detail() {
                                 visibility ?
                                     <img src={data.images[1]} />
                                     :
-                                    '暂无图片'
+                                    'No photos available now'
                             }
                         </div>
                         <div className="pic">
@@ -105,14 +105,14 @@ export default function Detail() {
                                 visibility ?
                                     <img src={data.images[2]} />
                                     :
-                                    '暂无图片'
+                                    'No photos available now'
                             }
                         </div>
                     </div>
                 </div>
-                <div className="hotel_detail_description" dangerouslySetInnerHTML={{ __html: visibility ? data.description : '暂无介绍' }}></div>
+                <div className="hotel_detail_description" dangerouslySetInnerHTML={{ __html: visibility ? data.description : 'No intro now' }}></div>
                 <div className="hotel_detail">
-                    <h3>热门设施</h3>
+                    <h3>Popular facilities</h3>
                     <div className="facility_list">
                         {
                             visibility ?
@@ -126,22 +126,22 @@ export default function Detail() {
                                         </div>
                                     )
                                 })
-                                : '无热门设施'
+                                : 'No popular facilities'
                         }
                     </div>
                 </div>
-                {/* 筛选住房 */}
+                {/* Filter */}
                 <DetailHotel HotelData={visibility ? data.roomList : []} changeFilter={handleFilterChange} />
-                {/* 住客点评 */}
+                {/* Guest reviews */}
                 <div className='hotel_reviews'>
                     <div className='title'>
-                        <h2>住客点评</h2>
+                        <h2>Guest reviews</h2>
                         <div className='hotel_score'>
-                            <span>8.9</span>很棒
+                            <span>8.9</span>Very good
                         </div>
                     </div>
                     <div className='reviews_spacer'>
-                        <p>单项评分:</p>
+                        <p>Individual score:</p>
                         <div className='box'>
                             {
                                 visibility ?
@@ -156,12 +156,12 @@ export default function Detail() {
                                             </div>
                                         )
                                     })
-                                    : '暂无评分'
+                                    : 'Not available'
                             }
                         </div>
                     </div>
                     <div className='title' style={{ marginBottom: '10px' }}>
-                        <h2>住客评价</h2>
+                        <h2>Guest reviews</h2>
                     </div>
                     <div className='hotel_evaluate'>
                         <div className='box' style={{ width: `${visibility ? (data.reviews.list.length * 350) + 'px' : '100%'}` }}>
@@ -182,7 +182,7 @@ export default function Detail() {
                                                 </div>
                                             </Card>
                                         )
-                                    }) : '暂无评论'
+                                    }) : 'No guest reviews available now'
                             }
                         </div>
                     </div>

@@ -1,7 +1,7 @@
-export default function Reserve (){
-    return(
+export default function Reserve() {
+    return (
         <>
-            预定成功
+            Booking success!
         </>
     )
 }
