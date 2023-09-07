@@ -24,19 +24,19 @@ export default function DetailFilter(props) {
         };
     }, []);
     const handleAdultChange = (value) => {
-      setAdultValue(value);
+        setAdultValue(value);
     };
-  
+
     const handleChildChange = (value) => {
-      setChildValue(value);
+        setChildValue(value);
     };
-  
+
     const handleRoomChange = (value) => {
-      setRoomValue(value);
+        setRoomValue(value);
     };
-   
+
     const submit = () => {
-        props.changeFilter({adultValue,roomValue,childValue})
+        props.changeFilter({ adultValue, roomValue, childValue })
     }
 
     return (
@@ -53,23 +53,23 @@ export default function DetailFilter(props) {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5 6a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0zM18 6A6 6 0 1 0 6 6a6 6 0 0 0 12 0zM3 23.25a9 9 0 1 1 18 0 .75.75 0 0 0 1.5 0c0-5.799-4.701-10.5-10.5-10.5S1.5 17.451 1.5 23.25a.75.75 0 0 0 1.5 0z"></path></svg>
                 </span>
                 <div className='people'>
-                    <p className='title' onClick={() => { setSelPeople(!selPeople) }}> <span>{adultValue}</span>位成人·<span>{childValue}</span>位孩童·<span>{roomValue}</span>间房 </p>
+                    <p className='title' onClick={() => { setSelPeople(!selPeople) }}> <span>{adultValue}</span>Adult·<span>{childValue}</span>Kid·<span>{roomValue}</span>Room </p>
                     <div className='peopleBox' style={{ display: selPeople ? 'block' : 'none' }}>
                         <div className='item'>
-                            <span>成人</span>
+                            <span>Adult</span>
                             <InputNumber min={0} max={100} defaultValue={1} value={adultValue} onChange={handleAdultChange} />
                         </div>
                         <div className='item'>
-                            <span>孩童</span>
+                            <span>Kid</span>
                             <InputNumber min={0} max={100} defaultValue={1} value={childValue} onChange={handleChildChange} />
                         </div>
                         <div className='item'>
-                            <span>客房</span>
+                            <span>Room</span>
                             <InputNumber min={0} max={100} defaultValue={1} value={roomValue} onChange={handleRoomChange} />
                         </div>
                         <div className='item'>
-                            <Button type="primary" ghost  onClick={() => { setSelPeople(!selPeople) }}>
-                                完成
+                            <Button type="primary" ghost onClick={() => { setSelPeople(!selPeople) }}>
+                                Finish
                             </Button>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ export default function DetailFilter(props) {
             </div>
             <div className='submit'>
                 <Button type="primary" onClick={submit} className='submitBtn'>
-                    搜索
+                    Search
                 </Button>
             </div>
         </div>

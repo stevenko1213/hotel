@@ -7,20 +7,20 @@ function CustomFooter(data) {
     return (
         <div key={'footer'}>
             {
-                data.data.number != 0 && data.data.price != 0?
+                data.data.number != 0 && data.data.price != 0 ?
                     <div>
-                        <p><span>{data.data.number}</span>间房的价格为</p>
+                        <p><span>{data.data.number}</span>The price of a room is</p>
                         <h3>{data.data.price}</h3>
-                        <p>含税费和其他费用 </p>
+                        <p>Including taxes and other charges </p>
                         <p style={{ margin: '10px 0' }}>
-                            <Link type="primary" to={'/reserve/'}>立即预定</Link>
+                            <Link type="primary" to={'/reserve/'}>Book now</Link>
                         </p>
                     </div>
                     : <></>
             }
-            <p>您將前往下一步</p>
-            <p>立即确认</p>
-            <p>不收取手续费及信用卡手续费！</p>
+            <p>You will be taken to the next step</p>
+            <p>Confirm now</p>
+            <p>No processing fee or credit card processing fee!</p>
         </div>
     );
 }
@@ -28,7 +28,7 @@ function CustomFooter(data) {
 export default function DetailHotel(props) {
     const [data, setData] = useState([]);
     const [Ndata, setNdata] = useState({ number: 0, price: 0 });
-// 获取传递参数
+
     useEffect(() => {
         setData(props.HotelData)
     }, [props.HotelData])
@@ -54,7 +54,7 @@ export default function DetailHotel(props) {
     }
     const columns = [
         {
-            title: '客房类型',
+            title: 'room type',
             dataIndex: 'type',
             width: '450px',
             key: 'types',
@@ -62,7 +62,7 @@ export default function DetailHotel(props) {
                 return (
                     <div>
                         <h3>{record.type}</h3>
-                        <p>{record.bed} 张双人床</p>
+                        <p>{record.bed} Double bed</p>
                         <p style={{ margin: '5px 0', borderBottom: '1px solid rgb(237 237 237)' }}>{record.spacer}</p>
                         <p>
                             {
@@ -81,12 +81,12 @@ export default function DetailHotel(props) {
             }
         },
         {
-            title: '适合人数',
+            title: 'suitable for number of people',
             dataIndex: 'peopleNumber',
             key: 'peopleNumber',
         },
         {
-            title: '预定须知',
+            title: 'booking instructions',
             dataIndex: 'notice',
             key: 'notice',
             render: (_, record) => (
@@ -96,7 +96,7 @@ export default function DetailHotel(props) {
             ),
         },
         {
-            title: '选择客房',
+            title: 'select room',
             dataIndex: 'roomNumberList',
             key: 'roomNumberList',
             render: (_, record, index) => (
@@ -113,20 +113,20 @@ export default function DetailHotel(props) {
             ),
         },
         {
-            title: '房费',
+            title: 'room fee',
             key: 'roomFee',
             dataIndex: 'roomFee',
             render: (_, record) => (
                 <div>
                     <h3>{record.roomN == 0 ? record.roomFee : record.roomN * record.roomFee}</h3>
-                    <p>含税费和其他费用</p>
+                    <p>Including taxes and other charges</p>
                 </div>
             ),
         },
     ];
     return (
         <div className='detail_hotel_list'>
-            <h2>空房情況</h2>
+            <h2>Availability</h2>
             <DetailFilter changeFilter={handleEventFromChild} />
             <Table rowKey="qid" columns={columns} dataSource={data} footer={() => <CustomFooter data={Ndata} key={'foo'} />} />
         </div>

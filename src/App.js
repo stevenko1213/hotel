@@ -5,8 +5,8 @@ import RouterList from './Router';
 
 function App() {
   return (
-    // 路由
-      <RouterList />
+
+    <RouterList />
   );
 }
 
