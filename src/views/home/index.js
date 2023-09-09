@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Checkbox, Divider, Button, Pagination } from 'antd';
-import { Link } from 'react-router-dom';// 调用 mock api
+import { Link } from 'react-router-dom';
 import api from '../../http/api'
 import FilterCom from '../../components/Filter';
 const starOptions = [
